@@ -83,36 +83,3 @@ Error: Debug Failure. Invalid cast. The supplied value [object Object] did not p
     at visitor (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:98639:44)
 PS D:\Dev\typescript-rtti\ts-transform-bug> 
 ```
-
-Changing out 
-
-```typescript
-ts.factory.createNodeArray(node.decorators),
-```
-
-For
-
-```typescript
-[].concat(node.decorators)
-```
-
-Yields:
-
-```
-Transforming source file 'D:/Dev/typescript-rtti/ts-transform-bug/program/src/main.ts'...
-D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:117612
-                throw e;
-                ^
-
-TypeError: Cannot read property 'expression' of undefined
-    at transformDecorator (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:92611:43)
-    at Object.map (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:638:29)
-    at transformAllDecoratorsOfDeclaration (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:92472:50)
-    at generateConstructorDecorationExpression (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:92589:40)
-    at addConstructorDecorationStatement (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:92577:30)
-    at visitClassDeclaration (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:92066:13)
-    at visitTypeScript (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:91924:28)
-    at visitorWorker (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:91711:24)
-    at sourceElementVisitorWorker (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:91736:28)
-    at saveStateAndInvoke (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:91649:27)
-```

@@ -44,3 +44,42 @@ class A {
     static stuff = 'things';
 }
 ```
+
+Result of `npm test`:
+
+```
+PS D:\Dev\typescript-rtti\ts-transform-bug> npm test
+
+> test
+> npm run clean && cd transformer && npm run build && cd .. && cd program && npm run build
+
+
+> clean
+> rimraf program/dist transformer/dist
+
+
+> build
+> tsc -b
+
+
+> build
+> ttsc
+
+Transforming source file 'D:/Dev/typescript-rtti/ts-transform-bug/program/src/main.ts'...
+D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:117612
+                throw e;
+                ^
+
+Error: Debug Failure. Invalid cast. The supplied value [object Object] did not pass the test 'isCallExpression'.
+    at Object.cast (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:1847:25)
+    at visitTypeScriptClassWrapper (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:101166:27)
+    at visitCallExpression (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:101086:24)
+    at visitorWorker (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:98718:28)
+    at visitor (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:98639:44)
+    at visitNode (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:89314:23)
+    at Object.visitEachChild (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:89826:236)
+    at visitVariableDeclaration (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:100136:30)
+    at visitorWorker (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:98680:28)
+    at visitor (D:\Dev\typescript-rtti\ts-transform-bug\node_modules\typescript\lib\typescript.js:98639:44)
+PS D:\Dev\typescript-rtti\ts-transform-bug> 
+```

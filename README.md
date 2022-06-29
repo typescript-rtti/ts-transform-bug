@@ -9,7 +9,7 @@ When targetting ES5, the following transformer causes Typescript to crash during
 import * as ts from 'typescript';
 
 const transformer: (program: ts.Program) => ts.TransformerFactory<ts.SourceFile> = (program: ts.Program) => {
-     const transform: ts.TransformerFactory<ts.SourceFile> = (context: ts.TransformationContext) => {
+    const transform: ts.TransformerFactory<ts.SourceFile> = (context: ts.TransformationContext) => {
         return sourceFile => {
             console.log(`Transforming source file '${sourceFile.fileName}'...`);
             function visitor(node: ts.Node) {
@@ -29,10 +29,18 @@ const transformer: (program: ts.Program) => ts.TransformerFactory<ts.SourceFile>
 
             return ts.visitNode(sourceFile, visitor);
         }
-     };
- 
-     return transform;
- };
- 
- export default transformer;
- ```
+    };
+
+    return transform;
+};
+
+export default transformer;
+```
+
+It crashes very specifically on a class with a static property that has an initializer, like so:
+
+```typescript
+class A {
+    static stuff = 'things';
+}
+```

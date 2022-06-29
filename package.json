@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "clean": "rimraf program/dist transformer/dist",
+    "test": "npm run clean && cd transformer && npm run build && cd .. && cd program && npm run build"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "ttypescript": "^1.5.13",
+    "typescript": "4.6"
+  }
+}
